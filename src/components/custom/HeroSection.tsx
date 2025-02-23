@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import ColourfulText from "@/components/ui/colourful-text";
 import { ShootingStars } from "../ui/shooting-stars";
 import { StarsBackground } from "../ui/stars-background";
-import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
+import { FlipWords } from "../ui/flip-words";
 
 const World = dynamic(
   () => import("@/components/ui/globe").then((m) => m.World),
@@ -14,6 +14,14 @@ const World = dynamic(
 );
 
 export default function Page() {
+
+  const words = [
+    "Full Stack Developer",
+    "Software Engineer",
+    "Photographer",
+    "Traveler",
+    "Foodie",
+    ];
 
 
   const globeConfig = {
@@ -416,8 +424,8 @@ export default function Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-xl md:text-2xl text-neutral-400 mb-4">
-              <TypewriterEffectSmooth words={[{ text: "Full Stack Developer" }]} />
+            <p className="text-xl md:text-3xl font-mono text-neutral-400 mb-4">
+              <FlipWords words={words} /> 
             </p>
             <p className="text-gray-400 max-w-md mb-8">
               Passionate about creating innovative web solutions and bringing
