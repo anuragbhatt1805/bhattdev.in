@@ -1,13 +1,41 @@
-"use client"
-import { motion } from "framer-motion"
-import dynamic from "next/dynamic"
-import ColourfulText from "@/components/ui/colourful-text"
+"use client";
+import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import ColourfulText from "@/components/ui/colourful-text";
+import { ShootingStars } from "../ui/shooting-stars";
+import { StarsBackground } from "../ui/stars-background";
+import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
+import { useEffect, useState } from "react";
 
-const World = dynamic(() => import("@/components/ui/globe").then((m) => m.World), {
-  ssr: false,
-})
+const World = dynamic(
+  () => import("@/components/ui/globe").then((m) => m.World),
+  {
+    ssr: false,
+  }
+);
 
 export default function Page() {
+
+  const [displaySkill, setdisplaySkill] = useState<{text: string, className?: string}>({text: "Software Engineer"});
+
+  const skills : string[] = [
+    "Full Stack Developer",
+    "Software Engineer",
+    "Photographer",
+    "Traveller",
+    "Tech Enthusiast",
+  ]
+
+  useEffect(() => {
+    
+    const timer = setTimeout(() => {
+      setdisplaySkill({text: skills[Math.floor(Math.random() * skills.length)]});
+    }, 5000);
+    return () => clearTimeout(timer);
+
+  }, [displaySkill])
+
+
   const globeConfig = {
     pointSize: 4,
     globeColor: "#000000",
@@ -29,9 +57,9 @@ export default function Page() {
     initialPosition: { lat: 22.3193, lng: 114.1694 },
     autoRotate: true,
     autoRotateSpeed: 0.5,
-  }
+  };
 
-  const colors = ["#06b6d4", "#3b82f6", "#6366f1"]
+  const colors = ["#06b6d4", "#3b82f6", "#6366f1"];
   const sampleArcs = [
     {
       order: 1,
@@ -397,21 +425,32 @@ export default function Page() {
 
   return (
     <section className="h-screen flex flex-col md:flex-row items-center justify-center bg-gradient-to-br  text-white overflow-hidden max-md:mt-14">
-      <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center space-y-3">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Hi, I am <br/><ColourfulText text={"John Doe"} />
-        </h1>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <p className="text-xl md:text-2xl text-neutral-400 mb-4">Full Stack Developer</p>
-          <p className="text-gray-400 max-w-md mb-8">
-            Passionate about creating innovative web solutions and bringing ideas to life through code.
-          </p>
-        </motion.div>
+      <div className="relative flex-col md:flex-row z-10 md:leading-tight max-w-7xl tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-white to-white flex gap-2 md:gap-8">
+        <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center space-y-3">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            Hi, I am <br />
+            <ColourfulText text={"Anurag Bhatt"} />
+          </h1>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-xl md:text-2xl text-neutral-400 mb-4">
+              <TypewriterEffectSmooth words={[displaySkill]} />
+            </p>
+            <p className="text-gray-400 max-w-md mb-8">
+              Passionate about creating innovative web solutions and bringing
+              ideas to life through code.
+            </p>
+          </motion.div>
+        </div>
+        <div className="w-full md:w-1/2 h-[50vh] md:h-screen md:mt-5 max-md:-mt-10">
+          <World data={sampleArcs} globeConfig={globeConfig} />
+        </div>
       </div>
-      <div className="w-full md:w-1/2 h-[50vh] md:h-screen md:mt-5 max-md:-mt-10">
-        <World data={sampleArcs} globeConfig={globeConfig} />
-      </div>
+      <ShootingStars />
+      <StarsBackground />
     </section>
-  )
+  );
 }
-
