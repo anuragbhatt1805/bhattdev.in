@@ -5,7 +5,6 @@ import ColourfulText from "@/components/ui/colourful-text";
 import { ShootingStars } from "../ui/shooting-stars";
 import { StarsBackground } from "../ui/stars-background";
 import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
-import { useEffect, useState } from "react";
 
 const World = dynamic(
   () => import("@/components/ui/globe").then((m) => m.World),
@@ -15,25 +14,6 @@ const World = dynamic(
 );
 
 export default function Page() {
-
-  const [displaySkill, setdisplaySkill] = useState<{text: string, className?: string}>({text: "Software Engineer"});
-
-  const skills : string[] = [
-    "Full Stack Developer",
-    "Software Engineer",
-    "Photographer",
-    "Traveller",
-    "Tech Enthusiast",
-  ]
-
-  useEffect(() => {
-    
-    const timer = setTimeout(() => {
-      setdisplaySkill({text: skills[Math.floor(Math.random() * skills.length)]});
-    }, 5000);
-    return () => clearTimeout(timer);
-
-  }, [displaySkill])
 
 
   const globeConfig = {
@@ -437,7 +417,7 @@ export default function Page() {
             transition={{ duration: 0.5 }}
           >
             <p className="text-xl md:text-2xl text-neutral-400 mb-4">
-              <TypewriterEffectSmooth words={[displaySkill]} />
+              <TypewriterEffectSmooth words={[{ text: "Full Stack Developer" }]} />
             </p>
             <p className="text-gray-400 max-w-md mb-8">
               Passionate about creating innovative web solutions and bringing
