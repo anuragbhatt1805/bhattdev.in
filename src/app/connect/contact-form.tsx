@@ -17,7 +17,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "sonner";
-import { Meteors } from "@/components/ui/meteors";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -36,7 +35,6 @@ const formSchema = z.object({
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -67,7 +65,6 @@ export default function ContactForm() {
                     } else {
                       setIsSubmitting(true);
                       toast.success("Message sent successfully!");
-                      setSubmitted(true);
                     }
                   }}
                   className="space-y-3"
