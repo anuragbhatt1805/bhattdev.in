@@ -433,7 +433,7 @@ export default function Page() {
             </p>
           </motion.div>
         </div>
-        <div className="w-full md:w-1/2 h-[50vh] md:h-screen md:mt-5 max-md:-mt-10">
+        <div className="w-full md:w-1/2 h-[50vh] z-10 md:h-screen md:mt-5 max-md:-mt-10">
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
       </div>
