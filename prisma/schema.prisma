@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(cuid())
+  username String  @unique
+  password String
+  active   Boolean @default(true)
+  isAdmin  Boolean @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model SocialLink {
+  id    String @id @default(cuid())
+  title String
+  link  String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("social_links")
+}
+
+model Developer {
+  id           String @id @default(cuid())
+  name         String
+  position     String
+  organization String
+  picture      String
+  bio          String
+  socialLinks  Json   @default("{}")
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("developers")
+}
+
+model Service {
+  id      String   @id @default(cuid())
+  name    String
+  details String[]
+  active  Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("services")
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  details     String[]
+  link        String?
+  screenshots String[]
+  techStack   String[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model App {
+  id          String   @id @default(cuid())
+  name        String
+  details     String
+  techStack   String[]
+  screenshots String[]
+  link        String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("apps")
+}
+
+model Connection {
+  id        String @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  serviceId String
+  subject   String
+  message   String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("connections")
+}
