@@ -51,11 +51,6 @@ export default function AdminLogin() {
           <CardDescription>
             Enter your credentials to access the admin dashboard
           </CardDescription>
-          <div className="mt-4 p-4 bg-muted rounded-lg">
-            <p className="text-sm font-medium mb-2">Demo Credentials:</p>
-            <p className="text-sm text-muted-foreground">Username: <span className="font-mono font-semibold">admin</span></p>
-            <p className="text-sm text-muted-foreground">Password: <span className="font-mono font-semibold">bhatt123</span></p>
-          </div>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">

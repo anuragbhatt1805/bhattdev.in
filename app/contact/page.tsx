@@ -107,15 +107,15 @@ export default function Contact() {
                 <CardContent className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <Mail className="h-5 w-5 text-primary" />
-                    <span>contact@bhattdevs.com</span>
+                    <span>anuragbhatt1805@gmail.com</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Phone className="h-5 w-5 text-primary" />
-                    <span>+1 (555) 123-4567</span>
+                    <span>+91 8005231181</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <MapPin className="h-5 w-5 text-primary" />
-                    <span>San Francisco, CA</span>
+                    <span>Bengaluru, India</span>
                   </div>
                 </CardContent>
               </Card>
@@ -173,7 +173,7 @@ export default function Contact() {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone</Label>
